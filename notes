@@ -1,0 +1,6 @@
+-create select box for 3 tables
+-change the php includes so they return json
+-instead on the get requests, use ajax calls
+
+Later:
+-change the data to be more interesting

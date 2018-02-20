@@ -47,25 +47,38 @@
 				<input type="submit" value="Refresh" name="selectTable" >
 			</form>
 			
-			<?php	
-			echo "<a href=\"?create\" title=\"Create a Record\" id=\"createRecordLink\">Create a new record</a>";
-			// Based on the GET request, use the included php files to query the database 
-			if(isset($_GET['create'])){
-				createNew($connection);
-			} elseif(isset($_GET['save'])) { 
-				saveData($connection);
-			} elseif(isset($_GET['delete'])) {
-				deleteData($connection);
-			} elseif(isset($_GET['edit'])){
-				editData($connection, $_GET['edit']);
-			} elseif(isset($_GET['update'])) {
-				updateData($connection);
-			} else {
-				displayData($connection);
-			}
+			<?php
+				echo "<a href=\"?create\" title=\"Create a Record\" id=\"createRecordLink\">Create a new record</a>";
+				// Based on the GET request, use the included php files to query the database 
+				if(isset($_GET['create'])){
+					createNew($connection);
+				} elseif(isset($_GET['save'])) { 
+					saveData($connection);
+				} elseif(isset($_GET['delete'])) {
+					deleteData($connection);
+				} elseif(isset($_GET['edit'])){
+					editData($connection, $_GET['edit']);
+				} elseif(isset($_GET['update'])) {
+					updateData($connection);
+				} else {
+					displayData($connection);
+				}
 			?>
 		</main>
 		<?php require "includes/footer.inc.php"?>
 	</div> <!-- End wrapper -->
 </body>
+
+<script>
+	$(document).ready( function() {
+		$.ajax ({
+			url: 'includes/getTable1Data.php',
+			method: 'GET',
+			datatype:'json'
+		}).done( function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+		});
+	});
+</script>
 </html>
