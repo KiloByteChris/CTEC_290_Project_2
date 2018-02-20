@@ -73,6 +73,41 @@
 			</form>
 			<?php
  		}
+		
+		function editData($connection, $name) {
+			$sql = "SELECT * FROM table1 WHERE last_name='$name' LIMIT 1";
+			
+			$result = $connection->query($sql);
+			$row = $result->fetch_assoc();
+			?>
+			
+			<form method="POST" action="?update">
+				<label for="customer_number">Customer Number:</label>
+				<input type="text" id="customer_number" value="<?php echo $row['customer_number']; ?>" name="customer_number">
+
+				<label for="date">Date:</label>
+				<input type="text" id="date" value="<?php echo $row['date1']; ?>" name="date">
+
+				<label for="last_name">Last Name:</label>
+				<input type="text" id="last_name" value="<?php echo $row['last_name']; ?>" name="last_name">
+				
+				<label for="first_name">First Name:</label>
+				<input type="text" id="first_name" value="<?php echo $row['first_name']; ?>" name="first_name">
+				
+				<label for="city_name">City:</label>
+				<input type="text" id="city_name" value="<?php echo $row['city_name']; ?>" name="city_name">
+				
+				<label for="state_name">State:</label>
+				<input type="text" id="state_name" value="<?php echo $row['state_name']; ?>" name="state_name">
+				
+				<label for="country_name">Country:</label>
+				<input type="text" name="country_name" value="<?php echo $row['country_name']; ?>" id="country_name">
+				
+				<a href="project2.php">Cancel</a>;
+				<input type="submit" value="Edit Record">
+			</form>
+			<?php
+		}
  		
  		if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -107,13 +142,21 @@
 
 			$sql = "INSERT INTO table1 (customer_number,date1,last_name,first_name,city_name,state_name,country_name)
 			VALUES ($customerNumber,'$date','$last','$first','$cityName','$stateName','$countryName')";
-
-
 			echo $sql;
 
 			$connection->query($sql);
 			
- 		}
+ 		} elseif(isset($_GET['delete'])) {
+			$sql = "DELETE FROM table1 WHERE last_name='{$_GET['delete']}' LIMIT 1";
+			
+			$connection->query($sql);
+		} elseif(isset($_GET['edit'])){
+			editData($connection, $_GET['edit']);
+		} elseif(isset($_GET['update'])) {
+			$sql = "UPDATE table1 SET customer_number={$_POST['customer_number']}, date1='{$_POST['date']}', last_name='{$_POST['last_name']}', first_name='{$_POST['first_name']}', city_name='{$_POST['city_name']}', state_name='{$_POST['state_name']}', country_name='{$_POST['country_name']}' WHERE last_name='{$_POST['last_name']}'";
+			echo $sql;
+			$connection->query($sql);
+		}
 	?>
 	</main>
 	<footer>
