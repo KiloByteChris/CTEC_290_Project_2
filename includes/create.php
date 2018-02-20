@@ -1,4 +1,5 @@
 <?php
+// Displays a form to input a new record in the database
 function createNew() {
 	echo "<p>create a new record</p>";
 	?>

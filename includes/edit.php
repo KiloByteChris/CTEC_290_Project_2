@@ -1,4 +1,5 @@
 <?php
+// Display a form that allows the user to change the data in the database
 function editData($connection, $name) {
 	$sql = "SELECT * FROM table1 WHERE last_name='$name' LIMIT 1";
 	

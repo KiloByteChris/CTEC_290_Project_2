@@ -1,4 +1,5 @@
 <?php
+// Save a new record to the database
 function saveData($connection){
 	$customerNumber = $_POST['customer_number'];
 	$date = $_POST['date'];

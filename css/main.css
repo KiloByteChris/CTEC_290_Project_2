@@ -1,0 +1,68 @@
+/*
+	CSS for project2.php
+	Chris McGuire
+	CTEC 290 - API
+	Winter 18
+*/
+body {
+	font-family: sans-serif;
+}
+
+#wrapper {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+header {
+    height: 150px;
+    background-color: #3892A0;
+    font-size: 2.5em;
+    color : #FFF;
+    border: 5px solid #000;
+	border-radius: 20px;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+	text-shadow: 2px 2px #c0c0c0;
+}
+
+#tableSelectForm {
+	padding: 20px 0 20px 0;
+	margin-left: 10px;
+}
+
+#createRecordLink {
+	margin: 10px;
+}
+
+a:link {	
+	color: #444;
+	font-weight: bold;
+	font-size: 1.1em;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#000;
+}
+
+#dataTable {
+	margin: 0 auto;
+}
+
+tr {background: #BFC0C1;}
+
+tr:nth-child(even) {background: #B0A096;}
+
+tr:hover {background: #B5B091;}
+
+td {
+	padding: 5px;
+	min-width: 70px;
+}
+
+footer {
+    border-top: 1px solid #000;
+}
