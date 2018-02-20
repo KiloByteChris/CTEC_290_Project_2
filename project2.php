@@ -45,7 +45,9 @@
 			<!-- Form to refresh the database display -->
 			<form id="tableSelectForm" method="POST" action="project2.php">
 				<input type="submit" value="Refresh" name="selectTable" >
-			</form>
+			</form> 
+			<div id="dataDisplayDiv"></div>
+			<button name="refresh" value="refresh" id="refresh">Refresh</button>
 			
 			<?php
 				echo "<a href=\"?create\" title=\"Create a Record\" id=\"createRecordLink\">Create a new record</a>";
@@ -68,7 +70,7 @@
 		<?php require "includes/footer.inc.php"?>
 	</div> <!-- End wrapper -->
 </body>
-
+<script src="js/displayData.js"></script>
 <script>
 	$(document).ready( function() {
 		$.ajax ({
@@ -76,8 +78,11 @@
 			method: 'GET',
 			datatype:'json'
 		}).done( function(data) {
+			// create a JSON object from the string returned from the php script
 			data = JSON.parse(data);
-			console.log(data);
+			//console.log(data);
+			
+			displayData(data);
 		});
 	});
 </script>

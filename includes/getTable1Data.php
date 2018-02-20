@@ -21,6 +21,7 @@ function displayData(){
 	echo $jsonData;
 	
 	mysqli_close($connection);
+
  } 
  
  displayData();
