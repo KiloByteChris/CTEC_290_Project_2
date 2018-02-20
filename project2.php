@@ -38,6 +38,8 @@
 			require "includes/update.php";
 			// Save changes to the database
 			require "includes/save.php";
+			// Delete a record in the database
+			require "includes/delete.php";
 		?>
 		<div id="formDiv">
 		</div>
@@ -63,9 +65,9 @@
 	 		saveData($connection);
 			
  		} elseif(isset($_GET['delete'])) {
-			$sql = "DELETE FROM table1 WHERE last_name='{$_GET['delete']}' LIMIT 1";
 			
-			$connection->query($sql);
+			deleteData($connection);
+			
 		} elseif(isset($_GET['edit'])){
 			
 			editData($connection, $_GET['edit']);
