@@ -21,7 +21,6 @@ function readData(){
 	echo $jsonData;
 	
 	mysqli_close($connection);
-
  } 
  
  readData();
