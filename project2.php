@@ -25,47 +25,11 @@
 	<div id="wrapper">
 		<?php require "includes/header.inc.php";?>
 		<main>
-			<?php	
-				// Database connection
-				require "includes/database_connection.php";
-				// Read and display the data from the database
-				require "includes/read.php";
-				// Create new records in the database
-				require "includes/create.php";
-				// Edit a record in the database
-				require "includes/edit.php";
-				// Edit a record in the database
-				require "includes/update.php";
-				// Save changes to the database
-				require "includes/save.php";
-				// Delete a record in the database
-				require "includes/delete.php";
-			?>
-			
-			<!-- Form to refresh the database display -->
-			<form id="tableSelectForm" method="POST" action="project2.php">
-				<input type="submit" value="Refresh" name="selectTable" >
-			</form> 
+			<button name="refresh" value="" id="refreshButton">Refresh</button>
+			<button name="table1" value="table1" id="table1Button">Table 1</button>
+			<button name="table2" value="table2" id="table2Button">Table 2</button>
+			<button name="table3" value="table3" id="table3Button">Table 3</button>
 			<div id="dataDisplayDiv"></div>
-			<button name="refresh" value="refresh" id="refresh">Refresh</button>
-			
-			<?php
-				echo "<a href=\"?create\" title=\"Create a Record\" id=\"createRecordLink\">Create a new record</a>";
-				// Based on the GET request, use the included php files to query the database 
-				if(isset($_GET['create'])){
-					createNew($connection);
-				} elseif(isset($_GET['save'])) { 
-					saveData($connection);
-				} elseif(isset($_GET['delete'])) {
-					deleteData($connection);
-				} elseif(isset($_GET['edit'])){
-					editData($connection, $_GET['edit']);
-				} elseif(isset($_GET['update'])) {
-					updateData($connection);
-				} else {
-					displayData($connection);
-				}
-			?>
 		</main>
 		<?php require "includes/footer.inc.php"?>
 	</div> <!-- End wrapper -->
@@ -73,16 +37,97 @@
 <script src="js/displayData.js"></script>
 <script>
 	$(document).ready( function() {
-		$.ajax ({
-			url: 'includes/getTable1Data.php',
-			method: 'GET',
-			datatype:'json'
-		}).done( function(data) {
-			// create a JSON object from the string returned from the php script
-			data = JSON.parse(data);
-			//console.log(data);
-			
-			displayData(data);
+		//---------------------------------------------------
+		//----------------- Read table data functions--------
+		//---------------------------------------------------
+		function refresh(table) {
+			var refreshURL = "";
+			var table = table;
+			switch(table) {
+				case "table1":
+					refreshURL = 'includes/getTable1Data.php';
+					break;
+				case "table2":
+					refreshURL = 'includes/getTable2Data.php';
+					break;
+				case "table3":
+					refreshURL = 'includes/getTable3Data.php';
+					break;
+			} 
+			$.ajax ({
+				url: refreshURL,
+				method: 'GET',
+				datatype:'json'
+			}).done( function(data) {
+				// create a JSON object from the string returned from the php script
+				data = JSON.parse(data);
+				//console.log(data);
+				displayData(data, table);
+			});
+		}
+		
+		function getTable1Data(table){
+			$.ajax ({
+				url: 'includes/getTable1Data.php',
+				method: 'GET',
+				datatype:'json'
+			}).done( function(data) {
+				// create a JSON object from the string returned from the php script
+				data = JSON.parse(data);
+				//console.log(data);
+				$("#dataDisplayDiv").html('');
+				displayData(data, table);
+			});
+		}
+		
+		function getTable2Data(table){
+			$.ajax ({
+				url: 'includes/getTable2Data.php',
+				method: 'GET',
+				datatype:'json'
+			}).done( function(data) {
+				// create a JSON object from the string returned from the php script
+				data = JSON.parse(data);
+				//console.log(data);
+				$("#dataDisplayDiv").html('');
+				displayData(data, table);
+			});
+		}
+		
+		function getTable3Data(table){
+			$.ajax ({
+				url: 'includes/getTable3Data.php',
+				method: 'GET',
+				datatype:'json'
+			}).done( function(data) {
+				// create a JSON object from the string returned from the php script
+				data = JSON.parse(data);
+				//console.log(data);
+				$("#dataDisplayDiv").html('');
+				displayData(data, table);
+			});
+		}
+		
+		
+		$("#table1Button").click( function(){
+			var table = $("#table1Button").val();
+			$("#refreshButton").val(table);
+			getTable1Data(table);
+		});
+		$("#table2Button").click( function(){
+			var table = $("#table2Button").val();
+			$("#refreshButton").val(table);
+			getTable2Data(table);
+		});
+		$("#table3Button").click( function(){
+			var table = $("#table3Button").val();
+			$("#refreshButton").val(table)
+			;getTable3Data(table);
+		});
+		
+		$("#refreshButton").click( function(){
+			var table = $("#refreshButton").val();
+			refresh(table);
 		});
 	});
 </script>

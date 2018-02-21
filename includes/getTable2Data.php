@@ -6,7 +6,7 @@ function readData(){
 	$connection->set_charset("utf-8");
 	
 	// Database query
-	$table = "table1";
+	$table = "table2";
 	$sql = "select * from " . $table ." ";
 	$result = mysqli_query($connection, $sql);
 	
