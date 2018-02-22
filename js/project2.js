@@ -89,12 +89,12 @@ $(document).ready( function() {
 		$("#dataDisplayDiv").append(displayString);
 	}
 	
-	function newRecordForm(table) {
+	/* function newRecordForm(table) {
 		var newRecordFormString = '';
 		switch(table){
 			case "table1":
 				$("#newRecordDiv").html('');
-				newRecordFormString += "<form>";
+				newRecordFormString += "<form id=\"newTable1RecordForm\">";
 				newRecordFormString += "<label for=\"customerNumber\">Customer Number</label><input type=\"text\" id=\"customerNumberInput\" name=\"customerNumber\">";
 				newRecordFormString += "<label for=\"date1Name\">Date</label><input type=\"text\" id=\"date1Input\" for=\"date1Name\">";
 				newRecordFormString += "<label for=\"firstName\">First Name</label><input type=\"text\" id=\"firstNameInput\"name=\"firstName\">";
@@ -102,15 +102,16 @@ $(document).ready( function() {
 				newRecordFormString += "<label for=\"cityName\">City</label><input type=\"text\" id=\"cityNameInput\"name=\"cityName\">";
 				newRecordFormString += "<label for=\"regionName\">Region</label><input type=\"text\" id=\"regionNameInput\"name=\"regionName\">";
 				newRecordFormString += "<label for=\"countryName\">Country</label><input type=\"text\" id=\"countryNameInput\"name=\"countryName\">";
-				newRecordFormString += "<input type=\"submit\" value=\"Submit\" name=\"submitNewRecord\">";
+				
 				newRecordFormString += "<input type=\"submit\" value=\"Cancel\" name=\"cancelNewRecord\">";
 				newRecordFormString += "</form>";
+				newRecordFormString += "<button id=\"submitNewRecord\">Submit Record</button>";
 				$("#newRecordDiv").append(newRecordFormString);
 				break
 			
 			case "table2":
 				$("#newRecordDiv").html('');
-				newRecordFormString += "<form>";
+				newRecordFormString += "<form id=\"newTable2RecordForm\">";
 				newRecordFormString += "<label for=\"productNumber\">Product Number</label><input type=\"text\" id=\"productNumberInput\" name=\"productNumber\">";
 				newRecordFormString += "<label for=\"date2Name\">Date</label><input type=\"text\" id=\"date2Input\" for=\"date2Name\">";
 				newRecordFormString += "<label for=\"originalPrice\">Original Price</label><input type=\"text\" id=\"originalPriceInput\"name=\"originalPrice\">";
@@ -118,15 +119,16 @@ $(document).ready( function() {
 				newRecordFormString += "<label for=\"salePrice\">Sale Price</label><input type=\"text\" id=\"salePriceInput\"name=\"salePriceName\">";
 				newRecordFormString += "<label for=\"onHand\">On Hand</label><input type=\"text\" id=\"onHandInput\"name=\"onHandName\">";
 				newRecordFormString += "<label for=\"description\">Description</label><input type=\"text\" id=\"descriptionInput\"name=\"descriptionName\">";
-				newRecordFormString += "<input type=\"submit\" value=\"Submit\" name=\"submitNewRecord\">";
+				
 				newRecordFormString += "<input type=\"submit\" value=\"Cancel\" name=\"cancelNewRecord\">";
 				newRecordFormString += "</form>";
+				newRecordFormString += "<button id=\"submitNewRecord\">Submit Record</button>";
 				$("#newRecordDiv").append(newRecordFormString);
 				break
 			
 			case "table3":
 				$("#newRecordDiv").html('');
-				newRecordFormString += "<form>";
+				newRecordFormString += "<form id=\"newTable3RecordForm\">";
 				newRecordFormString += "<label for=\"CustomerId\">Customer ID</label><input type=\"text\" id=\"CustomerIdInput\" name=\"CustomerId\">";
 				newRecordFormString += "<label for=\"creditCardNum\">Credit Card Number</label><input type=\"text\" id=\"creditCardNumInput\" for=\"creditCardNum\">";
 				newRecordFormString += "<label for=\"address\">Address</label><input type=\"text\" id=\"addressInput\"name=\"addressPrice\">";
@@ -134,16 +136,39 @@ $(document).ready( function() {
 				newRecordFormString += "<label for=\"referenceNumber\">Reference Number</label><input type=\"text\" id=\"referenceNumberInput\"name=\"referenceNumber\">";
 				newRecordFormString += "<label for=\"productOrdered\">Product Ordered</label><input type=\"text\" id=\"productOrderedInput\"name=\"productOrdered\">";
 				newRecordFormString += "<label for=\"productDescription\">Description</label><input type=\"text\" id=\"productDescriptionInput\"name=\"productDescription\">";
-				newRecordFormString += "<input type=\"submit\" value=\"Submit\" name=\"submitNewRecord\">";
+				
 				newRecordFormString += "<input type=\"submit\" value=\"Cancel\" name=\"cancelNewRecord\">";
 				newRecordFormString += "</form>";
+				newRecordFormString += '<button id="submitNewRecord">Submit Record</button>';
+				newRecordFormString += "<button id=\"newButton\">New Button</button>";
+				
 				$("#newRecordDiv").append(newRecordFormString);
 				break
 			
 		}
+	} */
+	
+	function saveNewRecord(table){
+		switch(table){
+			case "table1":
+				var newRecordData = $("#newTable1RecordForm").serialize();
+				console.log(newRecordData);
+				/* $.ajax ({
+					url: "includes/saveTable1Data.php',
+					method: "POST",
+					data: newRecordData
+				}).done (funtion(){
+					
+				}); */
+				break
+			case "table2":
+				break
+			case "table3":
+				break
+		}
 	}
 	
-	
+
 	$("#table1Button").click( function(){
 		var table = $("#table1Button").val();
 		$("#refreshButton").val(table);
@@ -162,10 +187,16 @@ $(document).ready( function() {
 	$("#refreshButton").click( function(){
 		var table = $("#refreshButton").val();
 		refresh(table);
+		console.log("hello");
 	});
 	$("#newRecordButton").click( function(){
 		var table = $("#refreshButton").val();
 		newRecordForm(table);
+		console.log("hello");
 	});
-	
+	$("#submitNewRecord1").click( function(){
+		var table = "table1";
+		console.log(table);
+		saveNewRecord(table);
+	});
 });

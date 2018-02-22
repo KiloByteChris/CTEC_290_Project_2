@@ -33,7 +33,47 @@
 			<button name="table2" value="table2" id="table2Button">Table 2</button>
 			<button name="table3" value="table3" id="table3Button">Table 3</button>
 			<button name="newRecord" value="newRecord" id="newRecordButton">Create New Record</button>
-			<div id="newRecordDiv"></div>
+			<div id="newRecordDiv">
+				<!-- TABLE 1 FORM -->
+				<form id="newTable1RecordForm">
+				<label for="customerNumber">Customer Number</label><input type="text" id="customerNumberInput" name="customerNumber">
+				<label for="date1Name">Date</label><input type="text" id="date1Input" for="date1Name">
+				<label for="firstName">First Name</label><input type="text" id="firstNameInput"name="firstName">
+				<label for="lastName">Last Name</label><input type="text" id="lastNameInput" name="lastName">
+				<label for="cityName">City</label><input type="text" id="cityNameInput"name="cityName">
+				<label for="regionName">Region</label><input type="text" id="regionNameInput"name="regionName">
+				<label for="countryName">Country</label><input type="text" id="countryNameInput"name="countryName">
+				<input type="submit" value="Cancel" name="cancelNewRecord">
+				</form>
+				<button id="submitNewRecord1" value="table1">Submit Record</button>
+				
+				<!-- TABLE 2 FORM -->
+				<form id="newTable2RecordForm">
+				<label for="productNumber">Product Number</label><input type="text" id="productNumberInput" name="productNumber">
+				<label for="date2Name">Date</label><input type="text\" id="date2Input\" for="date2Name">
+				<label for="originalPrice">Original Price</label><input type="text" id="originalPriceInput" name="originalPrice">
+				<label for="regularPrice">Regular Price</label><input type="text" id="regularPriceInput" name="regularPrice">
+				<label for="salePrice">Sale Price</label><input type="text" id="salePriceInput" name="salePriceName">
+				<label for="onHand">On Hand</label><input type="text" id="onHandInput"name="onHandName">
+				<label for="description">Description</label><input type="text" id="descriptionInput"name="descriptionName">
+				<input type="submit" value="Cancel" name="cancelNewRecord">
+				</form>
+				<button id="submitNewRecord2" value="table2">Submit Record</button>
+				
+				<!-- TABLE 3 FORM -->
+				<form id="newTable3RecordForm">
+				<label for="CustomerId">Customer ID</label><input type="text" id="CustomerIdInput" name="CustomerId">
+				<label for="creditCardNum">Credit Card Number</label><input type="text" id="creditCardNumInput" for="creditCardNum">
+				<label for="address">Address</label><input type="text" id="addressInput"name="addressPrice">
+				<label for="numberOrdered">Number Ordered</label><input type="text" id="numberOrderedInput" name="numberOrdered">
+				<label for="referenceNumber">Reference Number</label><input type="text" id="referenceNumberInput"name="referenceNumber">
+				<label for="productOrdered">Product Ordered</label><input type="text" id="productOrderedInput" name="productOrdered">
+				<label for="productDescription">Description</label><input type="text" id="productDescriptionInput"name="productDescription">
+				<input type="submit" value="Cancel" name="cancelNewRecord">
+				</form>
+				<button id="submitNewRecord3" value="table3">Submit Record</button>
+				
+			</div>
 			<div id="dataDisplayDiv"></div>
 		</main>
 		<?php require "includes/footer.inc.php"?>
