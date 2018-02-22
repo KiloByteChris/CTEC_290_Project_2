@@ -37,7 +37,7 @@
 				<!-- TABLE 1 FORM -->
 				<form id="newTable1RecordForm">
 				<label for="customerNumber">Customer Number</label><input type="text" id="customerNumberInput" name="customerNumber">
-				<label for="date1Name">Date</label><input type="text" id="date1Input" for="date1Name">
+				<label for="date1">Date</label><input type="text" id="date1Input" name="date1">
 				<label for="firstName">First Name</label><input type="text" id="firstNameInput"name="firstName">
 				<label for="lastName">Last Name</label><input type="text" id="lastNameInput" name="lastName">
 				<label for="cityName">City</label><input type="text" id="cityNameInput"name="cityName">
@@ -50,7 +50,7 @@
 				<!-- TABLE 2 FORM -->
 				<form id="newTable2RecordForm">
 				<label for="productNumber">Product Number</label><input type="text" id="productNumberInput" name="productNumber">
-				<label for="date2Name">Date</label><input type="text\" id="date2Input\" for="date2Name">
+				<label for="date2">Date</label><input type="text\" id="date2Input\" name="date2">
 				<label for="originalPrice">Original Price</label><input type="text" id="originalPriceInput" name="originalPrice">
 				<label for="regularPrice">Regular Price</label><input type="text" id="regularPriceInput" name="regularPrice">
 				<label for="salePrice">Sale Price</label><input type="text" id="salePriceInput" name="salePriceName">
@@ -63,7 +63,7 @@
 				<!-- TABLE 3 FORM -->
 				<form id="newTable3RecordForm">
 				<label for="CustomerId">Customer ID</label><input type="text" id="CustomerIdInput" name="CustomerId">
-				<label for="creditCardNum">Credit Card Number</label><input type="text" id="creditCardNumInput" for="creditCardNum">
+				<label for="creditCardNum">Credit Card Number</label><input type="text" id="creditCardNumInput" name="creditCardNum">
 				<label for="address">Address</label><input type="text" id="addressInput"name="addressPrice">
 				<label for="numberOrdered">Number Ordered</label><input type="text" id="numberOrderedInput" name="numberOrdered">
 				<label for="referenceNumber">Reference Number</label><input type="text" id="referenceNumberInput"name="referenceNumber">

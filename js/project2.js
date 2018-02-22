@@ -151,20 +151,29 @@ $(document).ready( function() {
 	function saveNewRecord(table){
 		switch(table){
 			case "table1":
-				var newRecordData = $("#newTable1RecordForm").serialize();
-				console.log(newRecordData);
-				/* $.ajax ({
-					url: "includes/saveTable1Data.php',
+				var newRecordData = $("#newTable1RecordForm").serializeArray();
+				console.log(typeof newRecordData);
+				newRecordData = JSON.stringify(newRecordData);
+				console.log(typeof newRecordData);
+				newRecordData = JSON.parse(newRecordData);
+				console.log(typeof newRecordData);
+				$.ajax ({
+					url: "includes/saveTable1Record.php",
 					method: "POST",
-					data: newRecordData
-				}).done (funtion(){
-					
-				}); */
+					data: newRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+					//console.log("done");
+				}); 
 				break
+				
 			case "table2":
 				break
+				
 			case "table3":
 				break
+				
 		}
 	}
 	
@@ -196,7 +205,6 @@ $(document).ready( function() {
 	});
 	$("#submitNewRecord1").click( function(){
 		var table = "table1";
-		console.log(table);
 		saveNewRecord(table);
 	});
 });
