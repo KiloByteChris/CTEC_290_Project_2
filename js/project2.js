@@ -1,10 +1,10 @@
 $(document).ready( function() {
-	//---------------------------------------------------
-	//----------------- Read table data functions--------
-	//---------------------------------------------------
+	/*------------------------------------------------------------------
+	---------------------- READ DATA FUNCTIONS--------------------------
+	------------------------------------------------------------------*/
 	function refresh(table) {
+		// Refresh the current database display
 		var refreshURL = "";
-		var table = table;
 		switch(table) {
 			case "table1":
 				refreshURL = 'includes/getTable1Data.php';
@@ -29,6 +29,7 @@ $(document).ready( function() {
 	}
 	
 	function getTableData(table){
+		// Read data from the selected table in the database 
 		switch(table) {
 			case "table1":
 				URL = 'includes/getTable1Data.php';
@@ -148,15 +149,21 @@ $(document).ready( function() {
 		}
 	} */
 	
+	/*------------------------------------------------------------------
+	---------------------- CREATE NEW RECORD----------------------------
+	------------------------------------------------------------------*/
 	function saveNewRecord(table){
 		switch(table){
 			case "table1":
 				var newRecordData = $("#newTable1RecordForm").serializeArray();
 				console.log(typeof newRecordData);
+				
 				newRecordData = JSON.stringify(newRecordData);
-				console.log(typeof newRecordData);
+				//console.log(typeof newRecordData);
 				newRecordData = JSON.parse(newRecordData);
-				console.log(typeof newRecordData);
+				//console.log(typeof newRecordData);
+				
+				
 				$.ajax ({
 					url: "includes/saveTable1Record.php",
 					method: "POST",
@@ -177,7 +184,9 @@ $(document).ready( function() {
 		}
 	}
 	
-
+	/*------------------------------------------------------------------
+	---------------------- BUTTON CLICKS -------------------------------
+	------------------------------------------------------------------*/
 	$("#table1Button").click( function(){
 		var table = $("#table1Button").val();
 		$("#refreshButton").val(table);
@@ -200,8 +209,6 @@ $(document).ready( function() {
 	});
 	$("#newRecordButton").click( function(){
 		var table = $("#refreshButton").val();
-		newRecordForm(table);
-		console.log("hello");
 	});
 	$("#submitNewRecord1").click( function(){
 		var table = "table1";

@@ -28,11 +28,14 @@
 	<div id="wrapper">
 		<?php require "includes/header.inc.php";?>
 		<main>
+			<!-- database selection buttons -->
 			<button name="refresh" value="table1" id="refreshButton">Refresh</button>
 			<button name="table1" value="table1" id="table1Button">Table 1</button>
 			<button name="table2" value="table2" id="table2Button">Table 2</button>
 			<button name="table3" value="table3" id="table3Button">Table 3</button>
 			<button name="newRecord" value="newRecord" id="newRecordButton">Create New Record</button>
+			
+			<!-- New Record Forms -->
 			<div id="newRecordDiv">
 				<!-- TABLE 1 FORM -->
 				<form id="newTable1RecordForm">
@@ -71,9 +74,10 @@
 				<label for="productDescription">Description</label><input type="text" id="productDescriptionInput"name="productDescription">
 				<input type="submit" value="Cancel" name="cancelNewRecord">
 				</form>
-				<button id="submitNewRecord3" value="table3">Submit Record</button>
-				
+				<button id="submitNewRecord3" value="table3">Submit Record</button>				
 			</div>
+			
+			<!-- Display the Database -->
 			<div id="dataDisplayDiv"></div>
 		</main>
 		<?php require "includes/footer.inc.php"?>
