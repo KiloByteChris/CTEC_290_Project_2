@@ -56,22 +56,22 @@
 				<label for="date2">Date</label><input type="text\" id="date2Input\" name="date2">
 				<label for="originalPrice">Original Price</label><input type="text" id="originalPriceInput" name="originalPrice">
 				<label for="regularPrice">Regular Price</label><input type="text" id="regularPriceInput" name="regularPrice">
-				<label for="salePrice">Sale Price</label><input type="text" id="salePriceInput" name="salePriceName">
-				<label for="onHand">On Hand</label><input type="text" id="onHandInput"name="onHandName">
-				<label for="description">Description</label><input type="text" id="descriptionInput"name="descriptionName">
+				<label for="salePrice">Sale Price</label><input type="text" id="salePriceInput" name="salePrice">
+				<label for="onHand">On Hand</label><input type="text" id="onHandInput" name="onHand">
+				<label for="description">Description</label><input type="text" id="descriptionInput" name="description">
 				<input type="submit" value="Cancel" name="cancelNewRecord">
 				</form>
 				<button id="submitNewRecord2" value="table2">Submit Record</button>
 				
 				<!-- TABLE 3 FORM -->
 				<form id="newTable3RecordForm">
-				<label for="CustomerId">Customer ID</label><input type="text" id="CustomerIdInput" name="CustomerId">
+				<label for="customerId">Customer ID</label><input type="text" id="customerIdInput" name="customerId">
 				<label for="creditCardNum">Credit Card Number</label><input type="text" id="creditCardNumInput" name="creditCardNum">
-				<label for="address">Address</label><input type="text" id="addressInput"name="addressPrice">
+				<label for="address">Address</label><input type="text" id="addressInput" name="address">
 				<label for="numberOrdered">Number Ordered</label><input type="text" id="numberOrderedInput" name="numberOrdered">
-				<label for="referenceNumber">Reference Number</label><input type="text" id="referenceNumberInput"name="referenceNumber">
+				<label for="referenceNumber">Reference Number</label><input type="text" id="referenceNumberInput" name="referenceNumber">
 				<label for="productOrdered">Product Ordered</label><input type="text" id="productOrderedInput" name="productOrdered">
-				<label for="productDescription">Description</label><input type="text" id="productDescriptionInput"name="productDescription">
+				<label for="productDescription">Description</label><input type="text" id="productDescriptionInput" name="productDescription">
 				<input type="submit" value="Cancel" name="cancelNewRecord">
 				</form>
 				<button id="submitNewRecord3" value="table3">Submit Record</button>				

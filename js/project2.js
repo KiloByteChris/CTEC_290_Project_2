@@ -23,7 +23,6 @@ $(document).ready( function() {
 		}).done( function(data) {
 			// create a JSON object from the string returned from the php script
 			data = JSON.parse(data);
-			//console.log(data);
 			displayData(data, table);
 		});
 	}
@@ -55,10 +54,9 @@ $(document).ready( function() {
 	}
 	
 	function displayData(data, table) {
-		// Clear the current display and display the new json data
+		// Display the data from the database
 		var displayString = "";
 		displayString += "<table>";
-		// Switch statement is used to create the correct display for the table data
 		switch(table) {
 			case "table1":
 				displayString += "<tr><th></th><th></th><th>Customer Number</th><th>Date</th><th>First Name</th><th>Last Name</th><th>City</th><th>Region</th><th>country</th></tr>";
@@ -156,14 +154,8 @@ $(document).ready( function() {
 		switch(table){
 			case "table1":
 				var newRecordData = $("#newTable1RecordForm").serializeArray();
-				console.log(typeof newRecordData);
-				
 				newRecordData = JSON.stringify(newRecordData);
-				//console.log(typeof newRecordData);
 				newRecordData = JSON.parse(newRecordData);
-				//console.log(typeof newRecordData);
-				
-				
 				$.ajax ({
 					url: "includes/saveTable1Record.php",
 					method: "POST",
@@ -171,14 +163,35 @@ $(document).ready( function() {
 					datatype: "json"
 				}).done( function(data){
 					console.log(data);
-					//console.log("done");
 				}); 
 				break
 				
 			case "table2":
+				var newRecordData = $("#newTable2RecordForm").serializeArray();
+				newRecordData = JSON.stringify(newRecordData);
+				newRecordData = JSON.parse(newRecordData);
+				$.ajax ({
+					url: "includes/saveTable2Record.php",
+					method: "POST",
+					data: newRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+				}); 
 				break
 				
 			case "table3":
+				var newRecordData = $("#newTable3RecordForm").serializeArray();
+				newRecordData = JSON.stringify(newRecordData);
+				newRecordData = JSON.parse(newRecordData);
+				$.ajax ({
+					url: "includes/saveTable3Record.php",
+					method: "POST",
+					data: newRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+				}); 
 				break
 				
 		}
@@ -212,6 +225,14 @@ $(document).ready( function() {
 	});
 	$("#submitNewRecord1").click( function(){
 		var table = "table1";
+		saveNewRecord(table);
+	});
+	$("#submitNewRecord2").click( function(){	
+		var table = "table2";
+		saveNewRecord(table);
+	});
+	$("#submitNewRecord3").click( function(){
+		var table = "table3";
 		saveNewRecord(table);
 	});
 });
