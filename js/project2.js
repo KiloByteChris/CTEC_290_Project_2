@@ -1,4 +1,6 @@
 $(document).ready( function() {
+	//Hide forms 
+	$("#newRecordDiv").hide();
 	/*------------------------------------------------------------------
 	---------------------- READ DATA FUNCTIONS--------------------------
 	------------------------------------------------------------------*/
@@ -406,22 +408,31 @@ $(document).ready( function() {
 		}
 	}
 	
+	/* function displayForm(table) {
+		switch(table) {
+			case "table1":
+			$('#dataDisplayDiv').toggle();
+			$("#newRecordDiv").toggle();
+			break
+		}
+	} */
+	
 	/*------------------------------------------------------------------
 	---------------------- BUTTON CLICKS -------------------------------
 	------------------------------------------------------------------*/
 	// TABLE SELECT
 	$("#table1Button").click( function(){
-		var table = $("#table1Button").val();
+		var table = "table1";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
 	$("#table2Button").click( function(){
-		var table = $("#table2Button").val();
+		var table = "table2";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
 	$("#table3Button").click( function(){
-		var table = $("#table3Button").val();
+		var table = "table3";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
@@ -434,6 +445,9 @@ $(document).ready( function() {
 	// CREATE A NEW RECORD
 	$("#newRecordButton").click( function(){
 		var table = $("#refreshButton").val();
+		//displayForm(table);
+		$('#dataDisplayDiv').toggle();
+		$("#newRecordDiv").toggle();
 	});
 	// SUBMIT NEW RECORD
 	$("#submitNewRecord1").click( function(){
