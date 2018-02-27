@@ -13,6 +13,5 @@ function deleteData($connection, $deleteRecordData){
 	$connection->query($sql);
 	mysqli_close($connection);
  } 
- 
  deleteData($connection, $deleteRecordData);
 ?>
