@@ -6,7 +6,6 @@ require "database_connection.php";
 //var_dump($_POST);
 $deleteRecordData = json_encode($_POST);
 $deleteRecordData = json_decode($deleteRecordData);
-var_dump($deleteRecordData);
 function deleteData($connection, $deleteRecordData){
 	$id = $deleteRecordData->id;
 	$sql = "DELETE FROM table3 WHERE customer_id='$deleteRecordData->id' LIMIT 1";

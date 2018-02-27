@@ -62,7 +62,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Customer Number</th><th>Date</th><th>First Name</th><th>Last Name</th><th>City</th><th>Region</th><th>country</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><button class=\"editButton\">Edit</button></td><td><button class=\"deleteButton\" id="+value.customer_number+" value="+value.customer_number+">Delete</button></td><td>"+value.customer_number+"</td><td>"+value.date1+"</td><td>"+value.first_name+"</td><td>"+value.last_name+"</td><td>"+value.city_name+"</td><td>"+value.state_name+"</td><td>"+value.country_name+"</td>";
+					displayString += "<td><button class=\"editButton\" id="+value.customer_number+" value="+value.customer_number+">Edit</button></td><td><button class=\"deleteButton\" id="+value.customer_number+" value="+value.customer_number+">Delete</button></td><td>"+value.customer_number+"</td><td>"+value.date1+"</td><td>"+value.first_name+"</td><td>"+value.last_name+"</td><td>"+value.city_name+"</td><td>"+value.state_name+"</td><td>"+value.country_name+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -70,7 +70,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Product Number</th><th>Date</th><th>Original Price</th><th>Regular Price</th><th>Sale Price</th><th>On Hand</th><th>Description</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><a href=\"\">Edit</a></td><td><button class=\"deleteButton\" id="+value.product_number+" value="+value.product_number+">Delete</button></td><td>"+value.product_number+"</td><td>"+value.date2+"</td><td>"+value.original_price+"</td><td>"+value.regular_price+"</td><td>"+value.sale_price+"</td><td>"+value.on_hand+"</td><td>"+value.description+"</td>";
+					displayString += "<td><button class=\"editButton\" id="+value.product_number+" value="+value.product_number+">Edit</button></td><td><button class=\"deleteButton\" id="+value.product_number+" value="+value.product_number+">Delete</button></td><td>"+value.product_number+"</td><td>"+value.date2+"</td><td>"+value.original_price+"</td><td>"+value.regular_price+"</td><td>"+value.sale_price+"</td><td>"+value.on_hand+"</td><td>"+value.description+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -78,7 +78,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Customer ID</th><th>Credit Card Number</th><th>Address</th><th>Number Ordered</th><th>Reference Number</th><th>Product</th><th>Description</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><a href=\"\">Edit</a></td><td><button class=\"deleteButton\" id="+value.customer_id+" value="+value.customer_id+">Delete</button></td><td>"+value.customer_id+"</td><td>"+value.credit_card_num+"</td><td>"+value.address+"</td><td>"+value.number_ordered+"</td><td>"+value.reference_number+"</td><td>"+value.product_ordered+"</td><td>"+value.product_description+"</td>";
+					displayString += "<td><button class=\"editButton\" id="+value.customer_id+" value="+value.customer_id+">Edit</button></td><td><button class=\"deleteButton\" id="+value.customer_id+" value="+value.customer_id+">Delete</button></td><td>"+value.customer_id+"</td><td>"+value.credit_card_num+"</td><td>"+value.address+"</td><td>"+value.number_ordered+"</td><td>"+value.reference_number+"</td><td>"+value.product_ordered+"</td><td>"+value.product_description+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -146,7 +146,6 @@ $(document).ready( function() {
 			
 		}
 	} */
-	
 	/*------------------------------------------------------------------
 	---------------------- CREATE NEW RECORD----------------------------
 	------------------------------------------------------------------*/
@@ -241,6 +240,108 @@ $(document).ready( function() {
 				}).done( function(data){
 					console.log(data);
 				}); 
+				break		
+		}
+	}
+	/*------------------------------------------------------------------
+	---------------------- EDIT  RECORD ------------------------------
+	------------------------------------------------------------------*/
+	function editRecord(editID, table) {
+		switch(table){
+			case "table1":
+				var editRecordData = {"id": editID};
+				editRecordData = JSON.stringify(editRecordData);
+				editRecordData = JSON.parse(editRecordData);
+				$.ajax ({
+					url: "includes/editTable1Record.php",
+					method: "POST",
+					data: editRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+					data = JSON.parse(data);
+					displayEditData(data, table);
+					
+				}); 
+				break
+				
+			case "table2":
+				
+				break
+				
+			case "table3":
+				
+				break
+				
+		}	
+	}
+	
+	function displayEditData (data, table) {
+		// Function takes the json data and changes the value of the text input so the record can be edited
+		switch(table){
+			case "table1":
+				$("#customerNumberInput").val(data[0].customer_number);
+				$("#date1Input").val(data[0].date1);
+				$("#firstNameInput").val(data[0].first_name);
+				$("#lastNameInput").val(data[0].last_name);
+				$("#cityNameInput").val(data[0].city_name);
+				$("#regionNameInput").val(data[0].state_name);
+				$("#countryNameInput").val(data[0].country_name);
+				var updateButtonString = "<button id='updateTable1' value="+data[0].customer_number+">Update Record</button>";
+				$("#newTable1RecordForm").append(updateButtonString);
+				break
+					
+			/* case "table2":		
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				break
+					
+			case "table3":		
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				$("#").val(data[0].);
+				break */	
+		}
+	}
+	/*------------------------------------------------------------------
+	---------------------- UPDATE RECORD -------------------------------
+	------------------------------------------------------------------*/
+	function updateRecord(updateID, table) {
+		switch(table){
+			case "table1":
+				var updateRecordData = $("#newTable1RecordForm").serializeArray();
+				// Add the original id to the array
+				var updateRecordDataID = {"name": "id", "value": updateID};
+				updateRecordData.push(updateRecordDataID);
+				// Turn the array into json
+				updateRecordData = JSON.stringify(updateRecordData);
+				updateRecordData = JSON.parse(updateRecordData);
+				$.ajax ({
+					url: "includes/updateTable1Record.php",
+					method: "POST",
+					data: updateRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log("done");
+					console.log(data);
+				}); 
+				break
+				
+			case "table2":
+				
+				break
+				
+			case "table3":
+				
 				break
 				
 		}
@@ -293,5 +394,20 @@ $(document).ready( function() {
 		var deleteID = this.value;
 		var table = $("#refreshButton").val();
 		deleteRecord(deleteID, table);
+	});
+	// EDIT RECORD
+	$("#dataDisplayDiv").on("click", ".editButton", function(){
+		var editID = this.value;
+		var table = $("#refreshButton").val();
+		editRecord(editID, table);
+	});
+	// UPDATE RECORD
+	$("#newRecordDiv").on("click", "#updateTable1", function(){
+		event.preventDefault();
+		console.log(this);
+		var updateID = this.value;
+		console.log(updateID);
+		var table = $("#refreshButton").val();
+		updateRecord(updateID, table);
 	});
 });
