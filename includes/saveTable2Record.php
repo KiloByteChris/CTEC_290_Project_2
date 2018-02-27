@@ -18,6 +18,15 @@ function saveData($connection, $newRecordData){
 	$sql = "INSERT INTO table2 (product_number,date2,original_price,regular_price,sale_price,on_hand,description)
 	VALUES ($productNumber,'$date','$originalPrice','$regularPrice','$salePrice','$onHand','$description')";
 	$connection->query($sql);
+	if($connection->affected_rows == 1){
+		$status = ["status" => 1];
+	}else{
+		$status = ["status" => 2];
+	}
+	//Encode the status into json and return it to the ajax request
+	$status = JSON_encode($status);
+	echo $status;
+	mysqli_close($connection);
 }
 saveData($connection,$newRecordData);
 ?>

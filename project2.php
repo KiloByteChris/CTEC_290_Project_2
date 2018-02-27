@@ -48,8 +48,10 @@ $( function() {
 			<li><a href="#tabs-3" id="table3Button">Table 3</a></li>
 			</ul>
 		</nav>
-			<button name="refresh" value="table1" id="refreshButton">Refresh</button>
+			<button name="refresh" value="table1" id="refreshButton">Show Table</button>
 			<button name="newRecord" value="newRecord" id="newRecordButton">Create New Record</button>
+			<!-- Div for Displaying errors errors -->
+			<div id="statusDiv"></div>
 			
 			<!-- New Record Forms -->
 			<div id="newRecordDiv">

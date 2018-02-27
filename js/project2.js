@@ -87,6 +87,7 @@ $(document).ready( function() {
 			}
 		displayString += "</table>";
 		// Display the table
+		$("#dataDisplayDiv").html("");
 		$("#dataDisplayDiv").append(displayString);
 	}
 	
@@ -163,7 +164,12 @@ $(document).ready( function() {
 					data: newRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Create record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with creating the record.</p>");
+					} 	
 				}); 
 				break
 				
@@ -177,7 +183,12 @@ $(document).ready( function() {
 					data: newRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Create record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with creating the record.</p>");
+					} 
 				}); 
 				break
 				
@@ -191,7 +202,12 @@ $(document).ready( function() {
 					data: newRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Create record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with creating the record.</p>");
+					} 
 				}); 
 				break
 				
@@ -203,6 +219,7 @@ $(document).ready( function() {
 	function deleteRecord(deleteID, table) {
 		switch(table){
 			case "table1":
+				// Create an object with an ID, then create json so it can be sent to the php api
 				var deleteRecordData = {"id": deleteID};
 				deleteRecordData = JSON.stringify(deleteRecordData);
 				deleteRecordData = JSON.parse(deleteRecordData);
@@ -212,7 +229,13 @@ $(document).ready( function() {
 					data: deleteRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					// Show the status of the delete request
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Delete record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with deleting the record.</p>");
+					}
 				}); 
 				break
 				
@@ -226,7 +249,12 @@ $(document).ready( function() {
 					data: deleteRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Delete record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with deleting the record.</p>");
+					}
 				}); 
 				break
 				
@@ -240,7 +268,12 @@ $(document).ready( function() {
 					data: deleteRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>Delete record was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with deleting the record.</p>");
+					}
 				}); 
 				break		
 		}
@@ -314,8 +347,7 @@ $(document).ready( function() {
 				$("#cityNameInput").val(data[0].city_name);
 				$("#regionNameInput").val(data[0].state_name);
 				$("#countryNameInput").val(data[0].country_name);
-				var updateButtonString = "<button id='updateTable1' value="+data[0].customer_number+">Update Record</button>";
-				$("#newTable1RecordForm").append(updateButtonString);
+				$("#submitNewRecord1").attr("id", "updateTable1").val(data[0].customer_number).text("Update Record");
 				break
 					
 			case "table2":		
@@ -326,8 +358,7 @@ $(document).ready( function() {
 				$("#salePriceInput").val(data[0].sale_price);
 				$("#onHandInput").val(data[0].on_hand);
 				$("#descriptionInput").val(data[0].description);
-				var updateButtonString = "<button id='updateTable2' value="+data[0].product_number+">Update Record</button>";
-				$("#newTable2RecordForm").append(updateButtonString);
+				$("#submitNewRecord2").attr("id", "updateTable2").val(data[0].product_number).text("Update Record");
 				break
 					
 			case "table3":		
@@ -338,8 +369,7 @@ $(document).ready( function() {
 				$("#referenceNumberInput").val(data[0].reference_number);
 				$("#productOrderedInput").val(data[0].product_ordered);
 				$("#productDescriptionInput").val(data[0].product_description);
-				var updateButtonString = "<button id='updateTable3' value="+data[0].customer_id+">Update Record</button>";
-				$("#newTable3RecordForm").append(updateButtonString);
+				$("#submitNewRecord3").attr("id", "updateTable3").val(data[0].customer_id).text("Update Record");
 				break	
 		}
 	}
@@ -362,8 +392,12 @@ $(document).ready( function() {
 					data: updateRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log("done");
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>The update was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with the update.</p>");
+					}
 				}); 
 				break
 				
@@ -381,8 +415,13 @@ $(document).ready( function() {
 					data: updateRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log("done");
 					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>The update was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with the update.</p>");
+					}
 				}); 
 				break
 				
@@ -400,94 +439,103 @@ $(document).ready( function() {
 					data: updateRecordData,
 					datatype: "json"
 				}).done( function(data){
-					console.log("done");
-					console.log(data);
+					data = JSON.parse(data);
+					if(data.status == 1){
+						$("#statusDiv").html("<p>The update was successful.</p>");
+					}else if (data.status == 2){
+						$("#statusDiv").html("<p>There was a problem with the update.</p>");
+					}
 				}); 
 				break
 				
 		}
-	}
-	
-	/* function displayForm(table) {
-		switch(table) {
-			case "table1":
-			$('#dataDisplayDiv').toggle();
-			$("#newRecordDiv").toggle();
-			break
-		}
-	} */
-	
+	}	
 	/*------------------------------------------------------------------
 	---------------------- BUTTON CLICKS -------------------------------
 	------------------------------------------------------------------*/
 	// TABLE SELECT
 	$("#table1Button").click( function(){
+		$("#statusDiv").html('');
 		var table = "table1";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
 	$("#table2Button").click( function(){
+		$("#statusDiv").html('');
 		var table = "table2";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
 	$("#table3Button").click( function(){
+		$("#statusDiv").html('');
 		var table = "table3";
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
-	// REFRESH CURRENT TABLE
+	// SHOW CURRENT TABLE
 	$("#refreshButton").click( function(){
+		$("#statusDiv").html('');
 		var table = $("#refreshButton").val();
+		$('#dataDisplayDiv').show();
+		$("#newRecordDiv").hide();
 		refresh(table);
-		console.log("hello");
 	});
 	// CREATE A NEW RECORD
 	$("#newRecordButton").click( function(){
+		$("#statusDiv").html('');
 		var table = $("#refreshButton").val();
-		//displayForm(table);
-		$('#dataDisplayDiv').toggle();
-		$("#newRecordDiv").toggle();
+		$('#dataDisplayDiv').hide();
+		$("#newRecordDiv").show();
 	});
 	// SUBMIT NEW RECORD
-	$("#submitNewRecord1").click( function(){
+	$("#newRecordDiv").on("click", "#submitNewRecord1", function(){
+		$("#statusDiv").html('');
 		var table = "table1";
 		saveNewRecord(table);
 	});
-	$("#submitNewRecord2").click( function(){	
+	$("#newRecordDiv").on("click", "#submitNewRecord2", function(){
+		$("#statusDiv").html('');
 		var table = "table2";
 		saveNewRecord(table);
 	});
-	$("#submitNewRecord3").click( function(){
-		var table = "table3";
+	$("#newRecordDiv").on("click", "#submitNewRecord2", function(){
+		$("#statusDiv").html('');
+		var table = "table2";
 		saveNewRecord(table);
 	});
 	// DELETE RECORD
 	$("#dataDisplayDiv").on("click", ".deleteButton", function(){
+		$("#statusDiv").html('');
 		var deleteID = this.value;
 		var table = $("#refreshButton").val();
 		deleteRecord(deleteID, table);
 	});
 	// EDIT RECORD
 	$("#dataDisplayDiv").on("click", ".editButton", function(){
+		$("#statusDiv").html('');
 		var editID = this.value;
 		var table = $("#refreshButton").val();
+		$('#dataDisplayDiv').hide();
+		$("#newRecordDiv").show();
 		editRecord(editID, table);
 	});
 	// UPDATE RECORD
 	$("#newRecordDiv").on("click", "#updateTable1", function(){
+		$("#statusDiv").html('');
 		event.preventDefault();
 		var updateID = this.value;
 		var table = $("#refreshButton").val();
 		updateRecord(updateID, table);
 	});
 	$("#newRecordDiv").on("click", "#updateTable2", function(){
+		$("#statusDiv").html('');
 		event.preventDefault();
 		var updateID = this.value;
 		var table = $("#refreshButton").val();
 		updateRecord(updateID, table);
 	});
 	$("#newRecordDiv").on("click", "#updateTable3", function(){
+		$("#statusDiv").html('');
 		event.preventDefault();
 		var updateID = this.value;
 		var table = $("#refreshButton").val();

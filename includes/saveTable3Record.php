@@ -19,6 +19,15 @@ function saveData($connection, $newRecordData){
 	$sql = "INSERT INTO table3 (customer_id,credit_card_num,address,number_ordered,reference_number,product_ordered,product_description)
 	VALUES ($customerId,'$creditCardNum','$address','$numberOrdered','$referenceNumber','$productOrdered','$productDescription')";
 	$connection->query($sql);
+	if($connection->affected_rows == 1){
+		$status = ["status" => 1];
+	}else{
+		$status = ["status" => 2];
+	}
+	//Encode the status into json and return it to the ajax request
+	$status = JSON_encode($status);
+	echo $status;
+	mysqli_close($connection);
 }
 saveData($connection,$newRecordData);
 ?>
