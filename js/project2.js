@@ -266,7 +266,20 @@ $(document).ready( function() {
 				break
 				
 			case "table2":
-				
+				var editRecordData = {"id": editID};
+				editRecordData = JSON.stringify(editRecordData);
+				editRecordData = JSON.parse(editRecordData);
+				$.ajax ({
+					url: "includes/editTable2Record.php",
+					method: "POST",
+					data: editRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+					data = JSON.parse(data);
+					displayEditData(data, table);
+					
+				});
 				break
 				
 			case "table3":
@@ -291,17 +304,19 @@ $(document).ready( function() {
 				$("#newTable1RecordForm").append(updateButtonString);
 				break
 					
-			/* case "table2":		
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
+			case "table2":		
+				$("#productNumberInput").val(data[0].product_number);
+				$("#date2Input").val(data[0].date2);
+				$("#originalPriceInput").val(data[0].original_price);
+				$("#regularPriceInput").val(data[0].regular_price);
+				$("#salePriceInput").val(data[0].sale_price);
+				$("#onHandInput").val(data[0].on_hand);
+				$("#descriptionInput").val(data[0].description);
+				var updateButtonString = "<button id='updateTable2' value="+data[0].product_number+">Update Record</button>";
+				$("#newTable2RecordForm").append(updateButtonString);
 				break
 					
-			case "table3":		
+			/*case "table3":		
 				$("#").val(data[0].);
 				$("#").val(data[0].);
 				$("#").val(data[0].);
@@ -337,7 +352,22 @@ $(document).ready( function() {
 				break
 				
 			case "table2":
-				
+				var updateRecordData = $("#newTable2RecordForm").serializeArray();
+				// Add the original id to the array
+				var updateRecordDataID = {"name": "id", "value": updateID};
+				updateRecordData.push(updateRecordDataID);
+				// Turn the array into json
+				updateRecordData = JSON.stringify(updateRecordData);
+				updateRecordData = JSON.parse(updateRecordData);
+				$.ajax ({
+					url: "includes/updateTable2Record.php",
+					method: "POST",
+					data: updateRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log("done");
+					console.log(data);
+				}); 
 				break
 				
 			case "table3":
@@ -403,6 +433,14 @@ $(document).ready( function() {
 	});
 	// UPDATE RECORD
 	$("#newRecordDiv").on("click", "#updateTable1", function(){
+		event.preventDefault();
+		console.log(this);
+		var updateID = this.value;
+		console.log(updateID);
+		var table = $("#refreshButton").val();
+		updateRecord(updateID, table);
+	});
+	$("#newRecordDiv").on("click", "#updateTable2", function(){
 		event.preventDefault();
 		console.log(this);
 		var updateID = this.value;
