@@ -70,7 +70,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Product Number</th><th>Date</th><th>Original Price</th><th>Regular Price</th><th>Sale Price</th><th>On Hand</th><th>Description</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><a href=\"\">Edit</a></td><td><a href=\"\">Delete</a></td><td>"+value.product_number+"</td><td>"+value.date2+"</td><td>"+value.original_price+"</td><td>"+value.regular_price+"</td><td>"+value.sale_price+"</td><td>"+value.on_hand+"</td><td>"+value.description+"</td>";
+					displayString += "<td><a href=\"\">Edit</a></td><td><button class=\"deleteButton\" id="+value.product_number+" value="+value.product_number+">Delete</button></td><td>"+value.product_number+"</td><td>"+value.date2+"</td><td>"+value.original_price+"</td><td>"+value.regular_price+"</td><td>"+value.sale_price+"</td><td>"+value.on_hand+"</td><td>"+value.description+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -78,7 +78,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Customer ID</th><th>Credit Card Number</th><th>Address</th><th>Number Ordered</th><th>Reference Number</th><th>Product</th><th>Description</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><a href=\"\">Edit</a></td><td><a href=\"\">Delete</a></td><td>"+value.customer_id+"</td><td>"+value.credit_card_num+"</td><td>"+value.address+"</td><td>"+value.number_ordered+"</td><td>"+value.reference_number+"</td><td>"+value.product_ordered+"</td><td>"+value.product_description+"</td>";
+					displayString += "<td><a href=\"\">Edit</a></td><td><button class=\"deleteButton\" id="+value.customer_id+" value="+value.customer_id+">Delete</button></td><td>"+value.customer_id+"</td><td>"+value.credit_card_num+"</td><td>"+value.address+"</td><td>"+value.number_ordered+"</td><td>"+value.reference_number+"</td><td>"+value.product_ordered+"</td><td>"+value.product_description+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -216,11 +216,31 @@ $(document).ready( function() {
 				break
 				
 			case "table2":
-				
+				var deleteRecordData = {"id": deleteID};
+				deleteRecordData = JSON.stringify(deleteRecordData);
+				deleteRecordData = JSON.parse(deleteRecordData);
+				$.ajax ({
+					url: "includes/deleteTable2Record.php",
+					method: "POST",
+					data: deleteRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+				}); 
 				break
 				
 			case "table3":
-				
+				var deleteRecordData = {"id": deleteID};
+				deleteRecordData = JSON.stringify(deleteRecordData);
+				deleteRecordData = JSON.parse(deleteRecordData);
+				$.ajax ({
+					url: "includes/deleteTable3Record.php",
+					method: "POST",
+					data: deleteRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+				}); 
 				break
 				
 		}
