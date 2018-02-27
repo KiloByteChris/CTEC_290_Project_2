@@ -283,7 +283,19 @@ $(document).ready( function() {
 				break
 				
 			case "table3":
-				
+				var editRecordData = {"id": editID};
+				editRecordData = JSON.stringify(editRecordData);
+				editRecordData = JSON.parse(editRecordData);
+				$.ajax ({
+					url: "includes/editTable3Record.php",
+					method: "POST",
+					data: editRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+					data = JSON.parse(data);
+					displayEditData(data, table);
+				});
 				break
 				
 		}	
@@ -316,15 +328,17 @@ $(document).ready( function() {
 				$("#newTable2RecordForm").append(updateButtonString);
 				break
 					
-			/*case "table3":		
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				$("#").val(data[0].);
-				break */	
+			case "table3":		
+				$("#customerIdInput").val(data[0].customer_id);
+				$("#creditCardNumInput").val(data[0].credit_card_num);
+				$("#addressInput").val(data[0].address);
+				$("#numberOrderedInput").val(data[0].number_ordered);
+				$("#referenceNumberInput").val(data[0].reference_number);
+				$("#productOrderedInput").val(data[0].product_ordered);
+				$("#productDescriptionInput").val(data[0].product_description);
+				var updateButtonString = "<button id='updateTable3' value="+data[0].customer_id+">Update Record</button>";
+				$("#newTable3RecordForm").append(updateButtonString);
+				break	
 		}
 	}
 	/*------------------------------------------------------------------
@@ -371,7 +385,22 @@ $(document).ready( function() {
 				break
 				
 			case "table3":
-				
+				var updateRecordData = $("#newTable3RecordForm").serializeArray();
+				// Add the original id to the array
+				var updateRecordDataID = {"name": "id", "value": updateID};
+				updateRecordData.push(updateRecordDataID);
+				// Turn the array into json
+				updateRecordData = JSON.stringify(updateRecordData);
+				updateRecordData = JSON.parse(updateRecordData);
+				$.ajax ({
+					url: "includes/updateTable3Record.php",
+					method: "POST",
+					data: updateRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log("done");
+					console.log(data);
+				}); 
 				break
 				
 		}
@@ -434,17 +463,19 @@ $(document).ready( function() {
 	// UPDATE RECORD
 	$("#newRecordDiv").on("click", "#updateTable1", function(){
 		event.preventDefault();
-		console.log(this);
 		var updateID = this.value;
-		console.log(updateID);
 		var table = $("#refreshButton").val();
 		updateRecord(updateID, table);
 	});
 	$("#newRecordDiv").on("click", "#updateTable2", function(){
 		event.preventDefault();
-		console.log(this);
 		var updateID = this.value;
-		console.log(updateID);
+		var table = $("#refreshButton").val();
+		updateRecord(updateID, table);
+	});
+	$("#newRecordDiv").on("click", "#updateTable3", function(){
+		event.preventDefault();
+		var updateID = this.value;
 		var table = $("#refreshButton").val();
 		updateRecord(updateID, table);
 	});
