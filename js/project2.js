@@ -62,7 +62,7 @@ $(document).ready( function() {
 				displayString += "<tr><th></th><th></th><th>Customer Number</th><th>Date</th><th>First Name</th><th>Last Name</th><th>City</th><th>Region</th><th>country</th></tr>";
 				$.each(data, function(key, value){
 					displayString += "<tr>";
-					displayString += "<td><a href=\"\">Edit</a></td><td><a href=\"\">Delete</a></td><td>"+value.customer_number+"</td><td>"+value.date1+"</td><td>"+value.first_name+"</td><td>"+value.last_name+"</td><td>"+value.city_name+"</td><td>"+value.state_name+"</td><td>"+value.country_name+"</td>";
+					displayString += "<td><button class=\"editButton\">Edit</button></td><td><button class=\"deleteButton\" id="+value.customer_number+" value="+value.customer_number+">Delete</button></td><td>"+value.customer_number+"</td><td>"+value.date1+"</td><td>"+value.first_name+"</td><td>"+value.last_name+"</td><td>"+value.city_name+"</td><td>"+value.state_name+"</td><td>"+value.country_name+"</td>";
 					displayString += "</tr>";
 				});
 				break
@@ -196,10 +196,40 @@ $(document).ready( function() {
 				
 		}
 	}
+	/*------------------------------------------------------------------
+	---------------------- DELETE  RECORD ------------------------------
+	------------------------------------------------------------------*/
+	function deleteRecord(deleteID, table) {
+		switch(table){
+			case "table1":
+				var deleteRecordData = {"id": deleteID};
+				deleteRecordData = JSON.stringify(deleteRecordData);
+				deleteRecordData = JSON.parse(deleteRecordData);
+				$.ajax ({
+					url: "includes/deleteTable1Record.php",
+					method: "POST",
+					data: deleteRecordData,
+					datatype: "json"
+				}).done( function(data){
+					console.log(data);
+				}); 
+				break
+				
+			case "table2":
+				
+				break
+				
+			case "table3":
+				
+				break
+				
+		}
+	}
 	
 	/*------------------------------------------------------------------
 	---------------------- BUTTON CLICKS -------------------------------
 	------------------------------------------------------------------*/
+	// TABLE SELECT
 	$("#table1Button").click( function(){
 		var table = $("#table1Button").val();
 		$("#refreshButton").val(table);
@@ -215,14 +245,17 @@ $(document).ready( function() {
 		$("#refreshButton").val(table);
 		getTableData(table);
 	});
+	// REFRESH CURRENT TABLE
 	$("#refreshButton").click( function(){
 		var table = $("#refreshButton").val();
 		refresh(table);
 		console.log("hello");
 	});
+	// CREATE A NEW RECORD
 	$("#newRecordButton").click( function(){
 		var table = $("#refreshButton").val();
 	});
+	// SUBMIT NEW RECORD
 	$("#submitNewRecord1").click( function(){
 		var table = "table1";
 		saveNewRecord(table);
@@ -234,5 +267,11 @@ $(document).ready( function() {
 	$("#submitNewRecord3").click( function(){
 		var table = "table3";
 		saveNewRecord(table);
+	});
+	// DELETE RECORD
+	$("#dataDisplayDiv").on("click", ".deleteButton", function(){
+		var deleteID = this.value;
+		var table = $("#refreshButton").val();
+		deleteRecord(deleteID, table);
 	});
 });
