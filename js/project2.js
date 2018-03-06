@@ -503,12 +503,20 @@ $(document).ready( function() {
 		var table = "table2";
 		saveNewRecord(table);
 	});
+	// CANCEL
+	$(".cancelButton").click ( function(){
+		event.preventDefault();
+		$('#dataDisplayDiv').show();
+		$("#newRecordDiv").hide();
+	});
 	// DELETE RECORD
 	$("#dataDisplayDiv").on("click", ".deleteButton", function(){
 		$("#statusDiv").html('');
 		var deleteID = this.value;
 		var table = $("#refreshButton").val();
-		deleteRecord(deleteID, table);
+		if(confirm("Deleting record " + deleteID + " from the database")){
+			deleteRecord(deleteID, table);
+		};
 	});
 	// EDIT RECORD
 	$("#dataDisplayDiv").on("click", ".editButton", function(){

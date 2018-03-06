@@ -48,8 +48,8 @@ $( function() {
 			<li><a href="#tabs-3" id="table3Button">Table 3</a></li>
 			</ul>
 		</nav>
-			<button name="refresh" value="table1" id="refreshButton">Show Table</button>
-			<button name="newRecord" value="newRecord" id="newRecordButton">Create New Record</button>
+			<button name="refresh" class="navButtons" value="table1" id="refreshButton">Show Table</button>
+			<button name="newRecord" class="navButtons" value="newRecord" id="newRecordButton">Create New Record</button>
 			<!-- Div for Displaying errors errors -->
 			<div id="statusDiv"></div>
 			
@@ -58,46 +58,46 @@ $( function() {
 				<!-- TABLE 1 FORM -->
 				<div id="tabs-1">
 					<form id="newTable1RecordForm">
-					<label for="customerNumber">Customer Number</label><input type="text" id="customerNumberInput" name="customerNumber">
-					<label for="date1">Date</label><input type="text" id="date1Input" name="date1">
-					<label for="firstName">First Name</label><input type="text" id="firstNameInput"name="firstName">
-					<label for="lastName">Last Name</label><input type="text" id="lastNameInput" name="lastName">
-					<label for="cityName">City</label><input type="text" id="cityNameInput"name="cityName">
-					<label for="regionName">Region</label><input type="text" id="regionNameInput"name="regionName">
-					<label for="countryName">Country</label><input type="text" id="countryNameInput"name="countryName">
-					<input type="submit" value="Cancel" name="cancelNewRecord">
+					<label for="customerNumberInput">Customer Number</label><input type="text" id="customerNumberInput" name="customerNumber">
+					<label for="date1Input">Date</label><input type="text" id="date1Input" name="date1">
+					<label for="firstNameInput">First Name</label><input type="text" id="firstNameInput" name="firstName">
+					<label for="lastNameInput">Last Name</label><input type="text" id="lastNameInput" name="lastName">
+					<label for="cityNameInput">City</label><input type="text" id="cityNameInput" name="cityName">
+					<label for="regionNameInput">Region</label><input type="text" id="regionNameInput" name="regionName">
+					<label for="countryNameInput">Country</label><input type="text" id="countryNameInput" name="countryName">
+					<input type="submit" class="cancelButton" value="Cancel" name="cancelNewRecord">
 					</form>
-					<button id="submitNewRecord1" value="table1">Submit Record</button>
+					<button id="submitNewRecord1" class="submitButton" value="table1">Submit Record</button>
 				</div>
 				
 				<!-- TABLE 2 FORM -->
 				<div id="tabs-2">
 					<form id="newTable2RecordForm">
-					<label for="productNumber">Product Number</label><input type="text" id="productNumberInput" name="productNumber">
-					<label for="date2">Date</label><input type="text" id="date2Input" name="date2">
-					<label for="originalPrice">Original Price</label><input type="text" id="originalPriceInput" name="originalPrice">
-					<label for="regularPrice">Regular Price</label><input type="text" id="regularPriceInput" name="regularPrice">
-					<label for="salePrice">Sale Price</label><input type="text" id="salePriceInput" name="salePrice">
-					<label for="onHand">On Hand</label><input type="text" id="onHandInput" name="onHand">
-					<label for="description">Description</label><input type="text" id="descriptionInput" name="description">
-					<input type="submit" value="Cancel" name="cancelNewRecord">
+					<label for="productNumberInput">Product Number</label><input type="text" id="productNumberInput" name="productNumber">
+					<label for="date2Input">Date</label><input type="text" id="date2Input" name="date2">
+					<label for="originalPriceInput">Original Price</label><input type="text" id="originalPriceInput" name="originalPrice">
+					<label for="regularPriceInput">Regular Price</label><input type="text" id="regularPriceInput" name="regularPrice">
+					<label for="salePriceInput">Sale Price</label><input type="text" id="salePriceInput" name="salePrice">
+					<label for="onHandInput">On Hand</label><input type="text" id="onHandInput" name="onHand">
+					<label for="descriptionInput">Description</label><input type="text" id="descriptionInput" name="description">
+					<input type="submit" class="cancelButton" value="Cancel" name="cancelNewRecord">
 					</form>
-					<button id="submitNewRecord2" value="table2">Submit Record</button>
+					<button id="submitNewRecord2" class="submitButton" value="table2">Submit Record</button>
 				</div>
 				
 				<!-- TABLE 3 FORM -->
 				<div id="tabs-3">
 				<form id="newTable3RecordForm">
-				<label for="customerId">Customer ID</label><input type="text" id="customerIdInput" name="customerId">
-				<label for="creditCardNum">Credit Card Number</label><input type="text" id="creditCardNumInput" name="creditCardNum">
-				<label for="address">Address</label><input type="text" id="addressInput" name="address">
-				<label for="numberOrdered">Number Ordered</label><input type="text" id="numberOrderedInput" name="numberOrdered">
-				<label for="referenceNumber">Reference Number</label><input type="text" id="referenceNumberInput" name="referenceNumber">
-				<label for="productOrdered">Product Ordered</label><input type="text" id="productOrderedInput" name="productOrdered">
-				<label for="productDescription">Description</label><input type="text" id="productDescriptionInput" name="productDescription">
-				<input type="submit" value="Cancel" name="cancelNewRecord">
+				<label for="customerIdInput">Customer ID</label><input type="text" id="customerIdInput" name="customerId">
+				<label for="creditCardNumInput">Credit Card Number</label><input type="text" id="creditCardNumInput" name="creditCardNum">
+				<label for="addressInput">Address</label><input type="text" id="addressInput" name="address">
+				<label for="numberOrderedInput">Number Ordered</label><input type="text" id="numberOrderedInput" name="numberOrdered">
+				<label for="referenceNumberInput">Reference Number</label><input type="text" id="referenceNumberInput" name="referenceNumber">
+				<label for="productOrderedInput">Product Ordered</label><input type="text" id="productOrderedInput" name="productOrdered">
+				<label for="productDescriptionInput">Description</label><input type="text" id="productDescriptionInput" name="productDescription">
+				<input type="submit" class="cancelButton" value="Cancel" name="cancelNewRecord">
 				</form>
-				<button id="submitNewRecord3" value="table3">Submit Record</button>	
+				<button id="submitNewRecord3" class="submitButton" value="table3">Submit Record</button>	
 				</div>
 			</div>
 			<!-- Display the Database -->

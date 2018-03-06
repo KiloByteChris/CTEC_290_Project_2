@@ -35,7 +35,6 @@ h1 {
 
 #createRecordLink {
 	margin: 10px;
-	
 }
 
 a:link {	
@@ -70,4 +69,30 @@ input {
 
 footer {
     border-top: 1px solid #000;
+}
+
+.navButtons {
+	margin: 10px;
+	float: right;
+}
+
+#dataDisplayDiv {
+	clear: both;
+}
+
+label {
+	margin: 10px;
+}
+
+input {
+	margin-bottom: 10px;
+	margin-top: 3px;
+}
+
+.cancelButton {
+	margin: 10px;
+}
+
+.submitButton {
+	margin: 10px;
 }
